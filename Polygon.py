@@ -54,10 +54,10 @@ class Polygon:
             for j in range(coord[1] - r, coord[1] + r + 1):
                 if (self.width > j and self.height > i and i >= 0 and j >= 0):
                     for k in range(index_bit_size):
-                        vector.append(self.world[i][j] // (2 ** i) % 2)
+                        vector.append(self.world[i][j] // (2 ** k) % 2)
                 else:
                     for k in range(index_bit_size):
-                        vector.append(border // (2 ** i) % 2) 
+                        vector.append(border // (2 ** k) % 2) 
         return vector
     def transcript(self, coord):
         vector = []
@@ -65,10 +65,10 @@ class Polygon:
             for j in range(coord[1] - r, coord[1] + r + 1):
                 if (self.width > j and self.height > i and i >= 0 and j >= 0):
                     for k in range(index_bit_size):
-                        vector.append(self.world[i][j] // (2 ** i) % 2)
+                        vector.append((self.world[i][j] // (2 ** i)) % 2)
                 else:
                     for k in range(index_bit_size):
-                        vector.append(border // (2 ** i) % 2)                    
+                        vector.append((border // (2 ** i)) % 2)                    
 
         vector_sounds = [0] * sound_length
         for i in self.sounds:
@@ -106,12 +106,12 @@ class Polygon:
                 cr.coord[1] = y
             if self.world[cr.coord[0]][cr.coord[1]] == 1 and cr.clas == "grass":
                 cr.eaten += 1
-
+            
                  
 
         elif act == 5:
             for i in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
-                if cr.coord[0] + i[0] + (cr.coord[1] + i[1]) * 10**5 in self.pos_dict:
+                if cr.coord[0] + i[0] + (cr.coord[1] + i[1]) * 10**5 in self.pos_dict and cr.clas == "meat":
                     self.pos_dict[cr.coord[0] + i[0] + (cr.coord[1] + i[1]) * 10**5].health -= cr.power
                     cr.eaten += 1
         self.pos_dict[cr.coord[0] + (cr.coord[1]) * 10**5] = cr
