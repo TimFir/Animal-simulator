@@ -3,8 +3,8 @@ import archive
 import sys
 import math
 from random import randint
-from Polygon_3 import *
-from Creature1 import *
+from Polygon import *
+from Creature import *
 
 
 def f(x):
