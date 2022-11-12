@@ -30,7 +30,7 @@ class Creature:
         self.inp = []
         self.inp += self.polygon.position_transcript(self.coord, self.r)
         for i in range(self.move_bits): # изменение
-            self.inp.append(self.last_act // (2 ** i) % 2)    
+            self.inp.append(self.last_act // (2 ** i) % 2)
                          
     
 
@@ -61,17 +61,10 @@ class Rabbit(Creature):
     actions = [(0, 1), (1, 0), (0, -1), (-1, 0), (0, 0)]
     color = 2
     clas = "grass"
-    def act(self, num):
-        self.polygon.world[self.coord[0]][self.coord[1]] = 0
-        self.coord[0] += self.actions[num][0]
-        self.coord[1] += self.actions[num][1]
-        if self.polygon.world[self.coord[0]][self.coord[1]] == food:
-            self.eaten += 1
-        self.polygon.world[self.coord[0]][self.coord[1]] = self.color
     def die(self):
         if self.health < 0:
             self.alive = False
-        self.polygon.world[self.coord[0]][self.coord[1]] = 0
+            self.polygon.world[self.coord[0]][self.coord[1]] = 0
         
 class Wolf(Creature):
     color = 4
