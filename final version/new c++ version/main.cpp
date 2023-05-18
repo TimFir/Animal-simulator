@@ -14,7 +14,7 @@ int p_size = 500;
 double var_h = 100;
 double a_size = M_PI * 0.6;
 double k_step = 0.004;
-tuple <double, double, double> field[500][500]; // поле, определяющее разность давлений
+tuple <double, double, double> field[500][500]; // ГЇГ®Г«ГҐ, Г®ГЇГ°ГҐГ¤ГҐГ«ГїГѕГ№ГҐГҐ Г°Г Г§Г­Г®Г±ГІГј Г¤Г ГўГ«ГҐГ­ГЁГ©
 double mod(long long x, long long y) {
     return sqrt(x * x + y * y) + 0.1;
 }
@@ -81,9 +81,9 @@ double val(long long x, long long y, int seed) {
 }
 
 double val_h(long long x, long long y, int seed) {
-    //return 0; // дефолт пустого поля
+    //return 0; // Г¤ГҐГґГ®Г«ГІ ГЇГіГ±ГІГ®ГЈГ® ГЇГ®Г«Гї
     double value_h = 0;
-    for (int i = 0; i < 8; i++) { // дебаг (i < 8)
+    for (int i = 0; i < 8; i++) { // Г¤ГҐГЎГ ГЈ (i < 8)
         value_h += val((int) (x / pow(2, i)), (int) (y / pow(2, i)), seed) * pow(1.6, i) * var_h;
     }
     return value_h;
@@ -152,7 +152,7 @@ struct Spider {
 
     double ang;
     pair <double, double> focus = {0, 0};
-    double focus_len = 1; // настроить фокус
+    double focus_len = 1; // Г­Г Г±ГІГ°Г®ГЁГІГј ГґГ®ГЄГіГ±
     pair <long long, long long> coords = {0, 0};
     pair <double, double> move_v = {0, 0};
     vector <bool> got;
@@ -242,13 +242,13 @@ struct Spider {
 
                 double i, j;
                 double ln = f3(mod(i_p - 0.5 * p_size, j_p - 0.5 * p_size) / p_size);
-                ln = 1; // дебаг на ускорение
+                ln = 1; // Г¤ГҐГЎГ ГЈ Г­Г  ГіГ±ГЄГ®Г°ГҐГ­ГЁГҐ
                 i = (int) (0.5 * p_size + (i_p - 0.5 * p_size) * ln);
                 j = (int) (0.5 * p_size + (j_p - 0.5 * p_size) * ln);
 
 
                 double ang1 = ang - a_size / 2 + i * a_size / p_size;
-                double ang2 = a_size / 2 - j * a_size / p_size + scal / sqrt(2); // изменяющий фокус
+                double ang2 = a_size / 2 - j * a_size / p_size + scal / sqrt(2); // ГЁГ§Г¬ГҐГ­ГїГѕГ№ГЁГ© ГґГ®ГЄГіГ±
                 ans[i_p][j_p] = Ray(coords.first, coords.second, ang1, sin(ang2), len_start);
                 len_start = max(ans[i_p][j_p].second * 0.9, (double) 50);
             }
